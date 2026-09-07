@@ -97,6 +97,14 @@ if [ "$1" = "-d" ]; then
     exit 0
 fi
 
+abrir_historial(){
+   if [[ -f "$BASE_DIR/procesado.log" ]]; then
+	cat "$BASE_DIR/procesado.log"
+   else
+	echo "No existe el archivo $BASE_DIR/procesado.log"
+   fi
+}
+
 while true; do
     echo "-----------------------------"
     echo "1) Crear entorno"
@@ -104,7 +112,8 @@ while true; do
     echo "3) Mostrar alumnos ordenados por padrón"
     echo "4) Mostrar las 10 notas más altas"
     echo "5) Buscar alumno por padrón"
-    echo "6) Salir"
+    echo "6)visualizar historial de procesos"
+    echo "7) Salir"
     echo "-----------------------------"
 
     read -p "Seleccione una opción: " opcion
@@ -115,7 +124,8 @@ while true; do
         3) mostrar_ordenados ;;
         4) mostrar_top10 ;;
         5) buscar_padron ;;
-        6) echo "Saliendo..."; exit 0 ;;
+        6) abrir_historial ;;
+	7) echo "Saliendo..."; exit 0 ;;
         *) echo "Opción inválida." ;;
     esac
 done
